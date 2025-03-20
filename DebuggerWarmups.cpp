@@ -3,20 +3,17 @@
  * for you to write down answers to the three questions asked in this section.
  *
  * Q1:
- *
- *
- *
+ * Once upon a time, actress and inventor Hedy Lamarr was running a high-altitude marathon when, suddenly,
+ * Nika saved the Leshan Giant Buddha from certain destruction through sheer force of personality.
+ * THE END!
  *
  * Q2:
- *
- *
- *
+ * My program crashed in somewhere 1 or 2 seconds after I tapped go and also in the compile output warning and note became visible.
+ * Warning says that recursion was detected and highlights the line 251 and note indicates the line which does the recursive call,
+ * that is line 252.
  *
  * Q3:
- *
- *
- *
- *
+ * 629, 639, 942, 670, 195, 907, 324.
  */
 #include "DebuggerWarmups.h"
 #include "hashcode.h"
@@ -28,7 +25,7 @@ using namespace std;
 /* TODO: Fill this in with your name before reading the story. Otherwise
  * you'll get the wrong story!
  */
-const string MyName = "(Your Name Here)";
+const string MyName = "Nika";
 
 namespace {
     void theEnd() {
@@ -250,7 +247,7 @@ namespace {
  * that this will trigger a stack overflow.
  */
 void triggerStackOverflow(int value) {
-    triggerStackOverflow(kGotoTable[value]);
+        triggerStackOverflow(kGotoTable[value]);
 }
 
 /* Entry point for the code that triggers a stack overflow. It determines what the starting

@@ -2,11 +2,38 @@
 using namespace std;
 
 void updateFire(Grid<int>& fire) {
-    /* TODO: The next line just exists to make sure you don't get compiler warning messages
-     * when this function isn't implemented. Delete this comment and the next line, then
-     * implement this function.
-     */
-    (void) fire;
+    int nRows, nCols;
+
+
+    nRows = fire.numRows();
+    nCols = fire.numCols();
+    for(int r = 1; r < nRows; r++){
+        for(int c = 0; c < nCols ; c++){
+            int temp = fire.get(r, c);
+            if(fire.inBounds(r - 1, c + 1) && randomChance(4.0/27.0)){
+                if(randomChance(2.0/3.0) && temp !=0){
+                    fire.set(r - 1, c + 1, temp - 1);
+                    break;
+                }
+                fire.set(r - 1, c + 1, temp);
+            }
+            else if(fire.inBounds(r - 1, c) && randomChance(2.0/9.0)){
+                if(randomChance(2.0/3.0) && temp !=0){
+                    fire.set(r - 1, c, temp - 1);
+                    break;
+                }
+                fire.set(r - 1, c, temp);
+            }
+            else if(fire.inBounds(r - 1, c - 1) && randomChance(1.0/3.0)){
+                if(randomChance(2.0/3.0) && temp !=0){
+                    fire.set(r - 1, c - 1, temp - 1);
+                    break;
+                }
+                fire.set(r - 1, c - 1, temp);
+            }
+        }
+    }
+
 }
 
 
