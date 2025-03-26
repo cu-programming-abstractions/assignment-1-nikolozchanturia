@@ -1,39 +1,33 @@
 #include "Fire.h"
 using namespace std;
 
-void updateFire(Grid<int>& fire) {
+void updateFire(Grid<int>& fire){
     int nRows, nCols;
-
-
     nRows = fire.numRows();
     nCols = fire.numCols();
     for(int r = 1; r < nRows; r++){
         for(int c = 0; c < nCols ; c++){
             int temp = fire.get(r, c);
-            if(fire.inBounds(r - 1, c + 1) && randomChance(4.0/27.0)){
-                if(randomChance(2.0/3.0) && temp !=0){
-                    fire.set(r - 1, c + 1, temp - 1);
-                    break;
-                }
-                fire.set(r - 1, c + 1, temp);
+            Vector<pair<int, int>> candidates;
+            if(fire.inBounds(r - 1, c + 1)){
+                candidates.add({r - 1, c + 1});
             }
-            else if(fire.inBounds(r - 1, c) && randomChance(2.0/9.0)){
-                if(randomChance(2.0/3.0) && temp !=0){
-                    fire.set(r - 1, c, temp - 1);
-                    break;
-                }
-                fire.set(r - 1, c, temp);
+            if(fire.inBounds(r - 1, c)){
+                candidates.add({r - 1, c});
             }
-            else if(fire.inBounds(r - 1, c - 1) && randomChance(1.0/3.0)){
-                if(randomChance(2.0/3.0) && temp !=0){
-                    fire.set(r - 1, c - 1, temp - 1);
-                    break;
-                }
-                fire.set(r - 1, c - 1, temp);
+            if(fire.inBounds(r - 1, c - 1)){
+                candidates.add({r - 1, c - 1});
             }
+            int ranN = randomInteger(0, candidates.size() - 1);
+            Vector<pair<int,int>> selected;
+            selected.add({candidates[ranN].first, candidates[ranN].second});
+            int nTemp = temp;
+            if(temp > 0 && randomChance(2.0/3.0)){
+                nTemp = --temp;
+            }
+            fire.set(selected[0].first, selected[0].second, nTemp);
         }
     }
-
 }
 
 

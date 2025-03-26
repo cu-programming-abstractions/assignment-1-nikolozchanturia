@@ -5,15 +5,31 @@
  * TODO: Edit these comments to leave a puzzle for your section leader to solve!
  */
 #include "OnlyConnect.h"
+#include "strlib.h"
+#include <iostream>
+#include <string>
 using namespace std;
 
 string onlyConnectize(string phrase) {
-    /* TODO: The next few lines just exist to make sure you don't get compiler
-     * warning messages when this function isn't implemented. Delete this
-     * comment and the next few lines, then implement this function.
-     */
-    (void) phrase;
-    return "";
+    if(phrase.empty()){
+        return "";
+    }
+    trim(phrase);
+    char x = phrase[0];
+    string rest = onlyConnectize(phrase.substr(1));
+    if(isalpha(x)){
+        if(x != 'a' && x != 'e' && x != 'i' && x != 'o'
+            && x != 'u' && x != 'A' && x != 'E' && x != 'I'
+            && x != 'O' && x != 'U' && x != 'y' && x != 'Y'){
+            return string(1, toupper(x)) + rest;
+        }
+        else{
+            return rest;
+        }
+    }
+    else{
+        return rest;
+    }
 }
 
 
